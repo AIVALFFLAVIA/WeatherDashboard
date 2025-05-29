@@ -1,0 +1,266 @@
+/* Base styles */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 10px;
+  color: #2e3a59;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.left-panel,
+.right-panel {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(46, 58, 89, 0.1);
+  width: 360px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #222e50;
+}
+
+.weather-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.weather-form input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.units-toggle {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.units-toggle button {
+  flex-grow: 1;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #4a90e2;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.units-toggle button:hover {
+  background-color: #357abd;
+}
+
+.weather-result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f0f4ff;
+  box-shadow: inset 0 0 8px #d3dfff;
+}
+
+.weather-result h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #314e9f;
+}
+
+.weather-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.weather-result p {
+  font-size: 1rem;
+  margin: 6px 0;
+  color: #41568c;
+}
+
+.icon-wrapper {
+  display: inline-block;
+  background: #2980b9;
+  border-radius: 50%;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.error {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #d64545;
+}
+
+.loading-spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #2980b9;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 10px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.post-result-toggle {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .left-panel,
+body.dark-mode .right-panel {
+  background-color: #1e1e1e;
+  box-shadow: 0 0 10px #000;
+}
+
+body.dark-mode h1,
+body.dark-mode .weather-result h2,
+body.dark-mode .weather-result p,
+body.dark-mode .units-toggle,
+body.dark-mode label,
+body.dark-mode .error {
+  color: #e0e0e0;
+}
+
+body.dark-mode .weather-form input,
+body.dark-mode .units-toggle button {
+  background-color: #333;
+  border-color: #555;
+  color: #eee;
+}
+
+body.dark-mode .units-toggle button:hover {
+  background-color: #5599ff;
+}
+
+body.dark-mode .weather-result {
+  background-color: #2a2a2a;
+  box-shadow: inset 0 0 8px #333;
+}
+
+body.dark-mode .icon-wrapper {
+  background: #3a3a3a;
+}
+
+/* Center all content inside the panels */
+.left-panel, .right-panel {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(46, 58, 89, 0.1);
+  width: 360px;
+
+  /* Add flexbox centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  text-align: center;  /* center text inside */
+}
+
+/* Style the post-result-toggle */
+.post-result-toggle {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #444;
+
+  /* Center content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Style the label inside post-result-toggle */
+.post-result-toggle label {
+  font-weight: 600;
+  user-select: none;
+}
+
+/* Style the select dropdown nicely */
+#unitSwitcher {
+  padding: 6px 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+#unitSwitcher:hover,
+#unitSwitcher:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Make sure the input text box inside the form is centered text */
+.weather-form input[type="text"] {
+  text-align: center;
+}
+
+/* Also center buttons text */
+.weather-form button {
+  text-align: center;
+}
+
+/* Dark mode adjustments for the new styles */
+body.dark-mode .post-result-toggle {
+  color: #ccc;
+}
+
+body.dark-mode #unitSwitcher {
+  background-color: #333;
+  border-color: #555;
+  color: #eee;
+}
+
+body.dark-mode #unitSwitcher:hover,
+body.dark-mode #unitSwitcher:focus {
+  border-color: #5599ff;
+}
+
+label{
+    color: #41568c;
+}
+
+p{
+    color:#222e50
+
+}

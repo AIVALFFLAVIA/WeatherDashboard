@@ -1,0 +1,62 @@
+<head>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+ 
+    <div class="dashboard-container">
+        <!-- LEFT SIDE -->
+        <div class="left-panel">
+            <h1>Weather Dashboard 🌤</h1>
+
+            <form method="POST" class="weather-form" autocomplete="off" id="weatherForm">
+                <input type="text" name="city" placeholder="Enter city name" {% if not weather %}required{% endif %} autofocus spellcheck="false" />
+                
+                <div class="units-toggle">
+                    <button type="submit">Get Weather</button>
+                    <button id="currentLocationBtn" type="button">📍 Current Location</button>
+                    <button id="darkModeToggle" type="button">🌙 Dark Mode</button>
+                </div>
+
+                <div class="share-buttons" style="margin-top: 20px;">
+                    <p><strong>Share this weather</strong></p>
+                    <a id="twitter-share" target="_blank">Twitter</a> |
+                    <a id="facebook-share" target="_blank">Facebook</a> |
+                    <a id="whatsapp-share" target="_blank">WhatsApp</a>
+                </div>
+
+
+                <input type="hidden" name="lat" id="lat" />
+                <input type="hidden" name="lon" id="lon" />
+            </form>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right-panel">
+            <div id="loading" class="loading-spinner" style="display:none;"></div>
+
+            <div id="weatherResult" class="weather-result" {% if not weather %}style="display:none;"{% endif %}>
+                {% if weather %}
+                <h2>{{ weather.city }}</h2>
+                <div class="icon-wrapper">
+                    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="Weather icon" class="weather-icon" />
+                </div>
+                <p><strong>Temperature:</strong> <span id="temperatureValue">{{ weather.temperature }}</span> °<span id="tempUnit">{% if weather.units == 'metric' %}C{% else %}F{% endif %}</span></p>
+                <p><strong>Description:</strong> {{ weather.description | capitalize }}</p>
+                <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+
+                <div class="post-result-toggle">
+                    <label>Change unit: </label>
+                    <select id="unitSwitcher">
+                        <option value="metric" {% if units == 'metric' %}selected{% endif %}>Celsius (°C)</option>
+                        <option value="imperial" {% if units == 'imperial' %}selected{% endif %}>Fahrenheit (°F)</option>
+                    </select>
+                </div>
+                {% endif %}
+            </div>
+
+            <p id="error" class="error" {% if not error %}style="display:none;"{% endif %}>{{ error }}</p>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
